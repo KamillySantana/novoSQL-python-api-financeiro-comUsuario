@@ -1,0 +1,53 @@
+CREATE TABLE usuario (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50),
+    email VARCHAR(254),
+    senha VARCHAR(100)
+);
+
+INSERT INTO usuario VALUES
+(1, 'Julia', 'Julia@gmail.com', '123456');
+
+CREATE TABLE receitas (
+    id_receitas INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario int DEFAULT NULL,
+    nome VARCHAR(254),
+    valor NUMERIC,
+    data DATE,
+    KEY id_usuario (id_usuario),
+    CONSTRAINT receitas FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)
+);
+
+INSERT INTO receitas VALUES
+(1, 1, 'Salário', 2500.00, '2024-02-6'),
+(2, 1, 'Salário', 2500.00, '2024-03-6');
+
+CREATE TABLE despesas (
+    id_despesas INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario int DEFAULT NULL,
+    nome VARCHAR(254),
+    valor NUMERIC,
+    data DATE,
+    KEY id_usuario (id_usuario),
+    CONSTRAINT despesas FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)
+);
+
+INSERT INTO despesas VALUES
+(1, 1, 'Aluguel', 900.00, '2024-03-05'),
+(2, 1, 'Energia', 200.00, '2024-03-06'),
+(3, 1, 'Água', 40.00, '2024-03-06'),
+(4, 1, 'Internet', 100.00, '2024-03-05');
+
+CREATE TABLE guardar (
+    id_guardar INT PRIMARY KEY,
+    id_usuario int DEFAULT NULL,
+    nome VARCHAR(254),
+    valor NUMERIC,
+    data DATE,
+    KEY id_usuario (id_usuario),
+    CONSTRAINT guardar FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)
+);
+
+INSERT INTO guardar VALUES
+(1, 1,'formatura', 100.00, '2024-03-31'),
+(2, 1, 'guardando', 300.00, '2024-04-01');
